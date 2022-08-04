@@ -5,7 +5,7 @@ using UnityEngine;
 public class GroundTile : MonoBehaviour
 {
     public SpawnManager groundSpawner;
-    
+    private float t = 2.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +22,17 @@ public class GroundTile : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         groundSpawner.SpawnTile();
-        Destroy(gameObject, 2.0f);
+        Destroy(gameObject, t);
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+
+        {
+            t = 0f;
+        }
+    }
+
+    
 }
