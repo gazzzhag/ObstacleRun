@@ -68,8 +68,8 @@ MonoBehaviour:
   orientation: {fileID: 6760004950214028843}
   player: {fileID: 6760004950099743838}
   playerObj: {fileID: 6510768905521318698}
+  animator: {fileID: 6760004949929440244}
   rb: {fileID: 6760004950099743839}
-  characterPrefab: {fileID: 5841509008819720592}
   rotationSpeed: 7
   moveSpeed: 20
 --- !u!136 &6760004950099743825

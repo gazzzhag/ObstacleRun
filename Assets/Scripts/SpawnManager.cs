@@ -5,40 +5,39 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject particlePickupEffect;
-    public GameObject coinPrefab;
+    public Coin coinPrefab;
     public GameObject player;
     public GameObject groundTile;
-    
 
-    Vector3 nextSpawnPointTile;
-    Vector3 nextSpawnCoin;
+    private Vector3 nextSpawnPointTile;
+    private Vector3 nextSpawnCoin;
 
     public void Awake()
     {
-        Instantiate(coinPrefab, new Vector3(0,0,5), Quaternion.identity);
+        SpawnCoin();
         nextSpawnPointTile = Vector3.zero;
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            SpawnTile();
+        }
+    }
 
     public void SpawnTile()
     {
         GameObject temp = Instantiate(groundTile, nextSpawnPointTile, Quaternion.identity);
         nextSpawnPointTile = temp.transform.GetChild(1).transform.position;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        for (int i = 0; i < 15; i++)
-        {
-            SpawnTile();
-        }
-
-
-    }
 
     public void SpawnCoin()
     {
-        nextSpawnCoin += new Vector3(0, 0, 5);
-        GameObject tempCoin = Instantiate(coinPrefab, nextSpawnCoin, Quaternion.identity);
+        int randomPosX = Random.Range(-5, 5);
+        nextSpawnCoin += new Vector3(randomPosX, 0, 5);
+
+        Coin coin = Instantiate(coinPrefab, new Vector3(randomPosX,0, nextSpawnCoin.z), Quaternion.identity);
+        coin.Initialize(this);
     }
 }

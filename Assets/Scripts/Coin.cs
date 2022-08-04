@@ -4,27 +4,19 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-
     private SpawnManager spawnManager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        spawnManager = GetComponent<SpawnManager>();
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void Initialize(SpawnManager spawnManager)
     {
-        
+        this.spawnManager = spawnManager;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-      if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Trigger");
+            spawnManager.SpawnCoin();
+            Destroy(gameObject);
         }
     }
-
-    
 }
