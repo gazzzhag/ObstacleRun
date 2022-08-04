@@ -22,6 +22,7 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < 15; i++)
         {
+            
             SpawnTile();
         }
     }
@@ -34,10 +35,15 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnCoin()
     {
-        int randomPosX = Random.Range(-5, 5);
-        nextSpawnCoin += new Vector3(randomPosX, 0, 5);
+        for (int i = 0; i < 3; i++)
+        {
+            int randomPosX = Random.Range(-5, 5);
+            int randomPosZ = Random.Range(3, 5);
+            nextSpawnCoin += new Vector3(randomPosX, 0, randomPosZ);
 
-        Coin coin = Instantiate(coinPrefab, new Vector3(randomPosX,0, nextSpawnCoin.z), Quaternion.identity);
-        coin.Initialize(this);
+            Coin coin = Instantiate(coinPrefab, new Vector3(randomPosX, 0, nextSpawnCoin.z), Quaternion.identity);
+            coin.Initialize(this);
+        }
+        
     }
 }

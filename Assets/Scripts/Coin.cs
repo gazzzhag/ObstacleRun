@@ -18,5 +18,6 @@ public class Coin : MonoBehaviour
             spawnManager.SpawnCoin();
             Destroy(gameObject);
         }
+        
     }
 }
